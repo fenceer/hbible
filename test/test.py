@@ -1,29 +1,16 @@
-#coding:utf-8
+# coding:utf-8
 '''
 Created on Dec 13, 2012
 
 @author: xen
 '''
-import time
-import hashlib
+import re
 
-TOKEN = '3652htt'
-signature = '73227ad34daf3a68ba114011088d6ecd110ad10b'
-timestamp = '1356589386'
-nonce = '1355964664'
-echostr = '5823823814753773919'
-
-dc = {}
-dc['token'] = 'TOKEN'
-dc['nonce'] = 'nonce'
-dc['timestamp'] = time.time()
-ll = []
-ll.append(timestamp)
-ll.append(TOKEN)
-ll.append(nonce)
-print ll
-ll.sort()
-print ll
-ss = hashlib.sha1(''.join(ll)).hexdigest()
-
-print ss
+pattern = ur'^(\D{1,20})(\d{1,3})\s{0,3}(?:\/|:){0,1}\s{0,3}(\d{0,3}\s{0,3}-{0,1}\s{0,3}\d{0,3})$'
+# match = re.search(r'\d', ss)
+ss = '太  2'
+match = re.match(pattern, ss)
+if match:
+    print match.group()
+else:
+    print None

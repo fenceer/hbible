@@ -1,8 +1,20 @@
 <xml>
- <ToUserName><![CDATA[fenceer]]></ToUserName>
- <FromUserName><![CDATA[hbible]]></FromUserName>
- <CreateTime>1356589386</CreateTime>
- <MsgType><![CDATA[text]]></MsgType>
- <Content><![CDATA[{{bb}}]]></Content>
- <FuncFlag>0</FuncFlag>
- </xml> 
+	<ToUserName>
+		<![CDATA[{{xmsg.FromUserName}}]]>
+	</ToUserName>
+	<FromUserName>
+		<![CDATA[{{xmsg.ToUserName}}]]>
+	</FromUserName>
+	<CreateTime>
+		{{xmsg.CreateTime}}
+	</CreateTime>
+	<MsgType>
+		<![CDATA[{{xmsg.MsgType}}]]>
+	</MsgType>
+	<Content>
+		<![CDATA[{{xmsg.Content}}]]>
+	</Content>
+	<FuncFlag>
+		0
+	</FuncFlag>
+</xml>
