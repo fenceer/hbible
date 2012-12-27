@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 '''
 Created on Oct 24, 2012
 
@@ -90,3 +90,26 @@ class Apidoc:
                         api[method + 'doc'] += d + '<br/>'
             apidoc.append(api)
         return render.apidoc(apidoc=apidoc, controllers=controllers, ctrl=ctrl[ctrl.find('.') + 1:] if ctrl else None)
+
+class Init:
+    '''
+    POST(a)
+    RETURN json()
+    '''
+    def POST(self):
+        print 'start'
+        fl = open("resource/bible/GB.txt")
+        bbs = []
+        for line in fl:
+            ll = line.split(' ')
+            Chapter = ll[1].split(':')
+            index = int(Chapter[0]) * 1000 + int(Chapter[1])
+            bb = {
+                'book':ll[0],
+                'index':index,
+                'text':ll[1] + ' ' + ll[2]
+                }
+            bbs.append(bb)
+        db.GB.insert(bbs)
+        print 'end'
+        return base.rtjson()

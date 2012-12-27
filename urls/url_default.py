@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 '''
 Created on 2012-7-15
 
@@ -12,6 +12,7 @@ local_interceptor = []
 urls = [
         
         '/test'                 , pre + 'test.Test',
+        '/init'                 , pre + 'test.Init',
         '/apidoc'               , pre + 'test.Apidoc',
         '/apidoc/(\w+)'         , pre + 'test.Apidoc',
         '/wechat/bb'            , pre + 'wechat.Query',
