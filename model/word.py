@@ -22,7 +22,7 @@ def checkChapter(ss):
             jie = match.group(3).split('-') 
             start = int(jie[0])
             if len(jie) == 2:
-                end = int(jie[1]) if jie[1] else 0
+                end = int(jie[1]) if jie[1] else 900
         else:
             start = 0
             end = 900
