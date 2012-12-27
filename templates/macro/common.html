@@ -1,0 +1,137 @@
+{%macro page_macro(page, url)%}
+<input type="hidden" id="curnum" name="curnum" value="{{page.pagenum}}">
+<ul>
+	{%if page.pagenum > 1%}
+	<li>
+		<a href="{{url|replace(':page:',page.pagenum-1)}}">上一页</a>
+	</li>
+	{%else%}
+	<li class="disabled">
+		<a href="#">上一页</a>
+	</li>
+	{%endif%}
+
+	{%if page.ptotal > 10%}
+
+	{%if 5> page.ptotal-page.pagenum %}
+	{%for num in range(page.ptotal-9,page.ptotal+1)%}
+	{% if page.pagenum == num %}
+	<li class="active">
+		<a  href="#">{{num}}</a>
+	</li>
+	{% else %}
+	<li>
+		<a  href="{{url|replace(':page:',num)}}">{{num}}</a>
+	</li>
+	{% endif %}
+	{%endfor%}
+	{%elif 5>= page.pagenum %}
+	{% for num in range(10) %}
+	{% if page.pagenum == num+1 %}
+	<li class="active">
+		<a  href="#">{{num+1}}</a>
+	</li>
+	{% else %}
+	<li>
+		<a  href="{{url|replace(':page:',num+1)}}">{{num+1}}</a>
+	</li>
+	{% endif %}
+	{% endfor %}
+	{%else%}
+	{%for num in range(page.pagenum-5,page.pagenum+5)%}
+	{% if page.pagenum == num %}
+	<li class="active">
+		<a  href="#">{{num}}</a>
+	</li>
+	{% else %}
+	<li>
+		<a  href="{{url|replace(':page:',num)}}">{{num}}</a>
+	</li>
+	{% endif %}
+	{%endfor%}
+	{% endif %}
+
+	{% else %}
+	{%if page.ptotal > 1%}
+	{% for num in range(page.ptotal) %}
+	{% if page.pagenum == num+1 %}
+	<li class="active">
+		<a  href="#">{{num+1}}</a>
+	</li>
+	{% else %}
+	<li>
+		<a  href="{{url|replace(':page:',num+1)}}">{{num+1}}</a>
+	</li>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+	{% endif %}
+
+	{%if page.ptotal > page.pagenum  %}
+	<li>
+		<a href="{{url|replace(':page:',page.pagenum+1)}}">下一页</a>
+	</li>
+	{%else%}
+	<li class="disabled">
+		<a href="#">下一页</a>
+	</li>
+	{%endif%}
+
+</ul>
+{%endmacro%}
+
+{% macro menu(option)%}
+<ul class="nav nav-list bs-docs-sidenav">
+	<li id="li-post">
+		<a href="/post/list"><i class="icon-chevron-right"></i> 分享管理</a>
+	</li>
+
+	<li id="li-topic">
+		<a href="/topic/list"><i class="icon-chevron-right"></i> 话题管理</a>
+	</li>
+	<li id="li-mdd">
+		<a href="/mdd/list"><i class="icon-chevron-right"></i> 目的地</a>
+	</li>
+	<li id="li-style">
+		<a href="/style/list"><i class="icon-chevron-right"></i> 旅游风格</a>
+	</li>
+	<li id="li-group">
+		<a href="/group/list"><i class="icon-chevron-right"></i> 小组管理</a>
+	</li>
+	<li>
+		<a href="#layouts"><i class="icon-chevron-right"></i> 便签管理</a>
+	</li>
+
+	<li>
+		<a href="#responsive"><i class="icon-chevron-right"></i> 用户管理</a>
+	</li>
+	<li class="dropdown-submenu">
+		<a href="#"> 图片管理</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="#"><i class="icon-plus"></i> 添加团</a>
+			</li>
+			<li>
+				<a href="#"><i class="icon-question-sign"></i> 未排团</a>
+			</li>
+			<li>
+				<a href="#"><i class="icon-plus-sign"></i> 新排团</a>
+			</li>
+			<li>
+				<a href="#"><i class="icon-circle-arrow-right"></i> 在外团</a>
+			</li>
+			<li>
+				<a href="#"><i class="icon-ok-sign"></i> 所有团</a>
+			</li>
+			<li style="display: none;">
+				<a href="#"><i class="icon-remove-sign"></i> 过期团</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="/logout"><i class="icon-chevron-right"></i> 安全退出</a>
+	</li>
+</ul>
+
+<script>$('#li-{{option}}').addClass('active')</script>
+{% endmacro %}

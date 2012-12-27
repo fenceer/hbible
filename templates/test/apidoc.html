@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>后台API测试工具v1.0</title>
+		<link type="text/css" rel="stylesheet" href="/static/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/static/toolcss/toolcss.css" />
+		<script type="text/javascript" src="/static/zui/jquery/jquery.js"></script>
+		<script type="text/javascript" src="/static/tooljs/json2.js"></script>
+
+	</head>
+	<body>
+		<div class="topmask"></div>
+		<div class="page">
+			<div id="api">
+				<h2 class="cap"><span>API</span>
+				<select id="controller" name="ctrl" style="float: right;">
+					<option>All</option>
+					{%for c in controllers|sort %}
+					{%if ctrl==c%}
+					<option selected="selected">{{c}}</option>
+					{%else%}
+					<option>{{c}}</option>
+					{%endif%}
+					{%endfor%}
+				</select></h2>
+				{%for api in apidoc %}
+				<div class="api-item J-api-item">
+					<h3>{{api.url}}<span>URL</span></h3>
+					<h5>Controller:</h5>
+					<p>
+						{{api.controller}}
+					</p>
+
+					{%if api.doc!=''%}
+					<h5>API doc:</h5>
+					<p>
+						{{api.doc}}
+					</p>
+					<br/>
+					{%endif%}
+
+					{%if api.getargs %}
+					<p>
+						<a href="{{api.url}}" class="method">GET</a><span>{{api.getargs}}</span>
+						<br/>
+						{{api.getdoc}}
+					</p>
+					{%endif%}
+					{%if api.postargs%}
+					<p>
+						<a href="{{api.url}}" class="method">POST</a><span>{{api.postargs}}</span>
+						<br/>
+						{{api.postdoc}}
+					</p>
+					{%endif%}
+				</div>
+				{%endfor%}
+			</div>
+			<div id="form">
+				<h2 class="cap">表单&nbsp;&nbsp;&nbsp;&nbsp;{{session.nick}}&nbsp;&nbsp;{{session.uid}}</h2>
+			</div>
+			<div id="out">
+				<h2 class="cap">预览</h2>
+				<div class="content">
+					<h5>发送数据：</h5>
+					<div class="post-view">
+						<textarea id="J-post-view"></textarea>
+					</div>
+					<h5>返回数据：</h5>
+					<div class="result-view">
+						<textarea id="J-result-view"></textarea>
+					</div>
+					<p>
+						请求类型：<span id="J-method-view"></span>
+					</p>
+					<p>
+						URL：<span id="J-url-view"></span>
+					</p>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="/static/tooljs/tool.js"></script>
+	</body>
+</html>
