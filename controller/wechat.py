@@ -34,56 +34,23 @@ class Query():
     def POST(self):
         data = web.input()
         if not model.wechat.checkSignature(data):return None
+
+        wmsg = model.wechat.getMsgObj(web.ctx.data)
+        db.wmsg.insert(wmsg)
         
-        print 'xdate', web.ctx.data
-        xmsg = model.wechat.getMsgObj(web.ctx.data)
-        content = xmsg['Content'].strip()
-        if content == 'Hello2BizUser':
-            text = '''
-                                                    耶稣爱你~
-                                                    回复书卷名、章、节查询圣经                                
-                                                    例如：“约翰福音3:16”或者 “创世记1/1-4”
-                                                    书卷名支持中英文简写
-                '''
-        elif content in ['H', 'h']:
-            text = '''
-                                                    耶稣爱你~
-                                                    回复书卷名、章、节查询圣经                                
-                                                    例如：“约翰福音3:16”或者 “创世记1/1-4”
-                                                    书卷名支持中英文简写
-                ''' 
-        elif content =='梁佳':
-            text = '''
-                                                    耶稣爱你，我也爱你~
-                ''' 
-        else: 
+        content = wmsg['Content']
+        text = model.wechat.quick(wmsg)
+        if not text: 
             text = model.word.checkChapter(content)
-#        ss = xmsg['Content'].split(' ')
-#        if ss[1].find(':'):
-#            ind = ss[1].split(':')
-#            num = ind[1].split('-')
-#            start = int(ind[0]) * 1000 + int(num[0])
-#            end = int(ind[0]) * 1000 + int(num[1])
-#        elif ss[1].find('/'):
-#            ind = ss[1].split('/')
-#            num = ind[1].split('-')
-#            start = int(ind[0]) * 1000 + int(num[0])
-#            end = int(ind[0]) * 1000 + int(num[1])
-#        
-#        if start > end:
-#            start = end
-#            end = start
-#        
-#        sn = model.word.getBook(ss[0])
-#        bb = db.GB.find({'book':sn, '$and':[
-#                                           {'index':{'$gte':start}},
-#                                           {'index':{'$lte':end}}]})
-#        text = ''
-#        for b in list(bb):
-#            text += b['text']
-        
-        
-        xmsg['CreateTime'] = time.time()
-        xmsg['MsgType'] = 'text'
-        xmsg['Content'] = text if text else "^o^"
-        return render.text(xmsg=xmsg)
+            if text is None:
+                source = db.source.find_one({'key':content})
+                if source:
+                    text = source['text'] 
+                else:
+                    text = "微圣经努力学习中/奋斗\n回复H查看使用帮助" 
+                    db.doubt.insert(wmsg)
+                    
+        wmsg['CreateTime'] = time.time()
+        wmsg['MsgType'] = 'text'
+        wmsg['Content'] = text if text else "微圣经努力学习中/奋斗\n\n回复H查看使用帮助"
+        return render.text(wmsg=wmsg)

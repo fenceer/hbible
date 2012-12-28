@@ -16,6 +16,7 @@ urls = [
         '/apidoc'               , pre + 'test.Apidoc',
         '/apidoc/(\w+)'         , pre + 'test.Apidoc',
         '/wechat/bb'            , pre + 'wechat.Query',
+        '/wechat'               , pre + 'wechat.Query',
         
         '/code'                 , pre + 'verify.CodeNum'
 ]
