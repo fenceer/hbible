@@ -21,10 +21,8 @@ def checkChapter(ss):
         end = 900
         if match.group(3):
             jie = match.group(3).split('-') 
-            print jie
             start = int(jie[0]) if jie[0] else 0
             end = int(jie[1]) if len(jie) == 2 and jie[1] else start
-            print start, end
         if start > end:
             start = end
             end = start
@@ -98,8 +96,8 @@ def getBook(sn):
     elif sn in ['尼希米记', '尼', '', '', '', 'NEH', 'Neh', 'neh'] :
         return 'Neh', '尼希米记'
     
-    elif sn in ['以斯贴记', '斯', '', '', '', 'EST', 'Est', 'est'] :
-        return 'Est', '以斯贴记'
+    elif sn in ['以斯帖记', '斯', '', '', '', 'EST', 'Est', 'est'] :
+        return 'Est', '以斯帖记'
     
     elif sn in ['约伯记', '伯', '', '', '', 'JOB', 'Job', 'job'] :
         return 'Job', '约伯记'

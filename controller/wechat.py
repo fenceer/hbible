@@ -10,12 +10,14 @@ import web
 import time
 
 import model
+import config
 from modules import common
 
 render = common.render('wechat')
 db = web.config.db
 rdb = web.config.redis
 pipe = rdb.pipeline()
+msgDict = config.msgDict
 session = web.config._session
 
 
@@ -47,10 +49,10 @@ class Query():
                 if source:
                     text = source['text'] 
                 else:
-                    text = "微圣经努力学习中/奋斗\n回复H查看使用帮助" 
+                    text = msgDict[10003] + msgDict[10001]
                     db.doubt.insert(wmsg)
                     
         wmsg['CreateTime'] = time.time()
         wmsg['MsgType'] = 'text'
-        wmsg['Content'] = text if text else "微圣经努力学习中/奋斗\n\n回复H查看使用帮助"
+        wmsg['Content'] = text if text else msgDict[10003] + msgDict[10001]
         return render.text(wmsg=wmsg)
