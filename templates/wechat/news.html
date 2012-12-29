@@ -1,0 +1,39 @@
+<xml>
+	<ToUserName>
+		<![CDATA[{{wmsg.FromUserName}}]]>
+	</ToUserName>
+	<FromUserName>
+		<![CDATA[{{wmsg.ToUserName}}]]>
+	</FromUserName>
+	<CreateTime>
+		{{wmsg.CreateTime}}
+	</CreateTime>
+	<MsgType>
+		<![CDATA[news]]>
+	</MsgType>
+	<Content>
+		<![CDATA[{{wmsg.Content}}]]>
+	</Content>
+	<ArticleCount>
+		{{wmsg.Articles|length}}
+	</ArticleCount>
+	<Articles>
+		{%for a in wmsg.Articles%}
+		<item>
+			<Title><![CDATA[title1]]></Title>
+			<Description>
+				<![CDATA[description1]]>
+			</Description>
+			<PicUrl>
+				<![CDATA[http://a.36krcnd.com/photo/9d547b7d967e7040827cdc43bc997bd2.jpg]]>
+			</PicUrl>
+			<Url>
+				<![CDATA[http://www.36kr.com/p/200443.html]]>
+			</Url>
+		</item>
+		{%endfor%}
+	</Articles>
+	<FuncFlag>
+		0
+	</FuncFlag>
+</xml>

@@ -41,6 +41,11 @@ class Query():
         db.wmsg.insert(wmsg)
         
         content = wmsg['Content']
+        if content == 'news':
+            wmsg['Articles'] = ['a', 'b', '1', '2', '3']
+            return render.news(wmsg=wmsg)
+        if content == 'test':
+            return render.test(wmsg=wmsg)
         text = model.wechat.quick(wmsg)
         if not text: 
             text = model.word.checkChapter(content)
