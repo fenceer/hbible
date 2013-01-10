@@ -10,7 +10,7 @@ INTERCEPTOR = 'interceptor:'
 local_interceptor = []
 
 urls = [
-        
+        '/tmp'                  , pre + 'test.Temp',
         '/test'                 , pre + 'test.Test',
         '/init'                 , pre + 'test.Init',
         '/apidoc'               , pre + 'test.Apidoc',

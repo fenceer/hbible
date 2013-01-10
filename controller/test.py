@@ -18,8 +18,11 @@ render = common.render('test')
 session = web.config._session
 
 class Temp:
+    '''
+    GET()
+    '''
     def GET(self):
-        return 'hello'
+        return os.sys.path
 
 class Test:
     '''

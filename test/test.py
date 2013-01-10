@@ -4,6 +4,7 @@ Created on Dec 13, 2012
 
 @author: xen
 '''
+import os
 
 '''
 经文正则校验
@@ -24,4 +25,4 @@ def ret():
 
 e= ret()
 
-print e[0]
+print os.sys.path
