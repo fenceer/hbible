@@ -36,7 +36,6 @@ class Query():
     def POST(self):
         data = web.input()
         if not model.wechat.checkSignature(data):return None
-
         wmsg = model.wechat.getMsgObj(web.ctx.data)
         db.wmsg.insert(wmsg)
         
@@ -46,17 +45,26 @@ class Query():
             return render.news(wmsg=wmsg)
         if content == 'test':
             return render.test(wmsg=wmsg)
+        
         text = model.wechat.quick(wmsg)
         if not text: 
-            text = model.word.checkChapter(content)
-            if text is None:
-                source = db.source.find_one({'key':content})
-                if source:
-                    text = source['text'] 
-                else:
-                    text = msgDict[10003] + msgDict[10001]
-                    db.doubt.insert(wmsg)
-                    
+            chapter = model.word.checkChapter(content)
+            '''如果查不到经文就搜索数据库和wiki'''
+            text = chapter if chapter else model.wechat.search(content)
+            if not text:
+                text = msgDict[10003] + msgDict[10001]
+                db.doubt.insert(wmsg)
+        
+        '''如果太长则要分割'''
+        if len(text) > 700:
+            cache = {
+                     '_id':wmsg['FromUserName'],
+                     'text':text[700:],
+                     'ctime':time.time()
+                     }
+            db.cache.save(cache)
+            text = text[:700] + msgDict[10007]
+
         wmsg['CreateTime'] = time.time()
         wmsg['MsgType'] = 'text'
         wmsg['Content'] = text if text else msgDict[10003] + msgDict[10001]

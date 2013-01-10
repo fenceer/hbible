@@ -8,6 +8,7 @@ import web
 import hashlib
 from xml.dom import minidom
 import config
+import urllib2
 
 msgDict = config.msgDict
 db = web.config.db
@@ -44,6 +45,26 @@ def quick(wmsg):
         text = msgDict[10006]
     elif content == '第三画':
         text = '耶稣爱你，我也爱你~/调皮'
+    elif content in ['n', '下一页']:
+        cache = db.cache.find_one({'_id':wmsg['FromUserName']})
+        if cache:
+            text = cache.get('text')
+            if len(text) <= 700:db.cache.remove({'_id':wmsg['FromUserName']})
+        else:
+            text = '没有下一页了~/微笑'
     else:
         text = None
+    return text
+
+def search(content):
+    source = db.source.find_one({'key':content})
+    if source:
+        text = source['text']
+    else:
+        req = urllib2.Request(config.WIKI_URL + content)
+        resp = urllib2.urlopen(req)
+        body = resp.read()
+        xwiki = minidom.parseString(body)
+        rev = xwiki.getElementsByTagName('rev')
+        text = rev[0].firstChild.data.strip()  if rev else None
     return text

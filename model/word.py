@@ -11,7 +11,7 @@ import web
 db = web.config.db
 
 def checkChapter(ss):
-    pattern = ur'^(\D{1,20})(\d{1,3})\s{0,3}(?:\/|:){0,1}\s{0,3}(\d{0,3}\s{0,3}-{0,1}\s{0,3}\d{0,3})$'
+    pattern = ur'^(\D{1,20})\s{0,3}(\d{1,3})\D{0,3}(\d{0,3}\s{0,3}-{0,1}\s{0,3}\d{0,3})$'
     # match = re.search(r'\d', ss)
     match = re.match(pattern, ss)
     if match:
