@@ -10,6 +10,8 @@ INTERCEPTOR = 'interceptor:'
 local_interceptor = []
 
 urls = [
+        ''                      , pre + 'home.Index',
+        '/'                     , pre + 'home.Index',
         '/tmp'                  , pre + 'test.Temp',
         '/test'                 , pre + 'test.Test',
         '/init'                 , pre + 'test.Init',

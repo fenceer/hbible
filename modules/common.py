@@ -20,7 +20,7 @@ set session to globals
 def render(tmp_dir):
     gconf = config.data
     gconf['uptime'] = serverInfo()
-    render = render_jinja([web.config.pp + 'templates/', web.config.pp + 'templates/' + tmp_dir], encoding='utf-8')
+    render = render_jinja([config.pp + 'templates/', config.pp + 'templates/' + tmp_dir], encoding='utf-8')
     render._lookup.globals.update(session=web.config._session, gconf=gconf)
     render._lookup.filters.update(filter.filters)
 

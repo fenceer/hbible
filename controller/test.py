@@ -12,6 +12,7 @@ from web import utils
 import urls
 from modules import common, base
 import model
+import config
 
 db = web.config.db
 render = common.render('test')
@@ -53,6 +54,10 @@ class Test:
 
 class Apidoc:
     def GET(self, ctrl=None):
+        data = web.input()
+        if data.get('key') != 'hbible':
+            raise web.seeother('/')
+        
         apidoc = []
         controllers = []
         for f in os.listdir(os.path.split(__file__)[0]):
@@ -96,12 +101,15 @@ class Apidoc:
 
 class Init:
     '''
-    POST(a)
+    POST()
     RETURN json()
     '''
     def POST(self):
-        print 'start'
-        fl = open(web.config.pp + "resource/bible/GB.txt")
+        bbs = db.GB.find()
+        if len(list(bbs)) > 0:
+            return base.rtjson(msg='done')
+        
+        fl = open(config.pp + "resource/bible/GB.txt")
         bbs = []
         for line in fl:
             ll = line.split(' ')
@@ -114,5 +122,4 @@ class Init:
                 }
             bbs.append(bb)
         db.GB.insert(bbs)
-        print 'end'
         return base.rtjson()

@@ -4,6 +4,7 @@ Created on Nov 29, 2012
 
 @author: xen
 '''
+import os
 
 data = {}
 mddType = ['古镇', '温泉', '滑雪', '都市', '名胜', '其他']
@@ -11,6 +12,9 @@ data['img_domain'] = 'http://kapian.b0.upaiyun.com'
 data['domain'] = 'http://back.zobei.com:8080'
 data['mddType'] = mddType
 WIKI_URL = 'http://www.weibible.org/api.php?format=xml&action=query&prop=revisions&rvprop=content&titles='
+
+pp = os.environ.get('OPENSHIFT_REPO_DIR')
+pp = pp + 'diy/' if pp else ''
 
 msgDict = {
          10001:'回复h查看使用帮助\n',
