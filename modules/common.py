@@ -12,18 +12,15 @@ from web.contrib.template import render_jinja
 
 import config
 from modules import filter
-import os
 
 '''
 return a render instance
 set session to globals
 '''
 def render(tmp_dir):
-    pp = os.environ.get('OPENSHIFT_REPO_DIR')
-    pp = pp + 'diy/' if pp else ''
     gconf = config.data
     gconf['uptime'] = serverInfo()
-    render = render_jinja([pp + 'templates/', pp + 'templates/' + tmp_dir], encoding='utf-8')
+    render = render_jinja([web.config.pp + 'templates/', web.config.pp + 'templates/' + tmp_dir], encoding='utf-8')
     render._lookup.globals.update(session=web.config._session, gconf=gconf)
     render._lookup.filters.update(filter.filters)
 

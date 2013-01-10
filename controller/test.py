@@ -101,7 +101,7 @@ class Init:
     '''
     def POST(self):
         print 'start'
-        fl = open("resource/bible/GB.txt")
+        fl = open(web.config.pp + "resource/bible/GB.txt")
         bbs = []
         for line in fl:
             ll = line.split(' ')

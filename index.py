@@ -6,6 +6,7 @@ Created on Sep 21, 2012
 @author: xen
 '''
 import sys
+import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -18,6 +19,9 @@ web.config.debug = False
 web.config.mongo = pymongo.Connection('127.4.24.129', 27017)
 web.config.mongo.admin.authenticate('admin', 'ukCMnbuzFBq8')
 web.config.db = web.config.mongo['hbible']
+
+pp = os.environ.get('OPENSHIFT_REPO_DIR')
+web.config.pp = pp + 'diy/' if pp else ''
 
 app = web.application(urls.urls, globals())
 web.config._session = web.session.Session(app, web.session.DiskStore('sessions'), {'count': 0})
