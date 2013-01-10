@@ -15,8 +15,6 @@ from modules import common
 
 render = common.render('wechat')
 db = web.config.db
-rdb = web.config.redis
-pipe = rdb.pipeline()
 msgDict = config.msgDict
 session = web.config._session
 

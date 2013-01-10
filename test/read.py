@@ -4,7 +4,6 @@ Created on Dec 27, 2012
 
 @author: xen
 '''
-import redis
 import pymongo
 import time
 
@@ -13,8 +12,6 @@ mdb = pymongo.Connection('192.168.1.131', 27017)
 mdb.admin.authenticate('fenceer', 'fenceer')
 db = mdb['hbible']
 
-rdb = redis.StrictRedis(host='192.168.1.131', port=6379, db=3)
-pipe = rdb.pipeline()
 
 fl = open("../resource/bible/GB2.txt")
 ss = ''

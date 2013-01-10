@@ -8,8 +8,6 @@ import web
 
 
 db = web.config.db
-rdb = web.config.redis
-rpipe = rdb.pipeline()
 session = web.config._session
 
 
