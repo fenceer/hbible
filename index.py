@@ -32,6 +32,8 @@ app.add_processor(appinit.my_processor)
 app.internalerror = appinit.internalerror
 app.notfound = appinit.notfound
 
+application = app.wsgifunc()
+
 if __name__ == "__main__":
     web.wsgi.runwsgi = lambda func, addr = None: web.wsgi.runfcgi(func, addr)
     app.run()
