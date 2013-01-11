@@ -51,7 +51,7 @@ class Query():
             '''如果查不到经文就搜索数据库和wiki'''
             text = chapter if chapter else model.wechat.search(content)
             if not text:
-                text = msgDict[10003] + msgDict[10008] + urllib.quote(content) + msgDict[10009] + msgDict[10001]
+                text = msgDict[10003] + msgDict[10008] + urllib.quote(content.encode('utf-8')) + msgDict[10009] + msgDict[10001]
                 db.doubt.insert(wmsg)
         
         '''如果太长则要分割'''

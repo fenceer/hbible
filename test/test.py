@@ -4,8 +4,8 @@ Created on Dec 13, 2012
 
 @author: xen
 '''
-import os
 import urllib
+import chardet
 
 '''
 经文正则校验
@@ -27,5 +27,6 @@ def ret():
 e= ret()
 
 ss='你好'
+print chardet.detect(ss)
 
 print urllib.quote(ss)
