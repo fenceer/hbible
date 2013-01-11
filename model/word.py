@@ -48,13 +48,13 @@ def checkChapter(ss):
         return None
 
 def getBook(sn):
-    if sn in ['创世记', '创', 'GENESIS', 'Genesis', 'genesis', 'GEN', 'Gen', 'gen']:
+    if sn in ['创世记', '创', 'GENESIS', 'Genesis', 'genesis', 'GEN', 'Gen', 'gen','创世纪']:
         return 'Gen', '创世记'
     
     elif sn in ['出埃及记', '出', '', '', '', 'EXO', 'Exo', 'exo'] :
         return 'Exo', '出埃及记'
     
-    elif sn in ['利未记', '利', '', '', '', 'LEV', 'Lev', 'lev'] :
+    elif sn in ['利未记', '利', '', '', '', 'LEV', 'Lev', 'lev','利未'] :
         return 'Lev', '利未记'
     
     elif sn in ['民数记', '民', '', '', '', 'NUM', 'Num', 'num'] :
@@ -96,7 +96,7 @@ def getBook(sn):
     elif sn in ['尼希米记', '尼', '', '', '', 'NEH', 'Neh', 'neh'] :
         return 'Neh', '尼希米记'
     
-    elif sn in ['以斯帖记', '斯', '', '', '', 'EST', 'Est', 'est'] :
+    elif sn in ['以斯帖记', '斯', '', '', '', 'EST', 'Est', 'est','以斯贴记',] :
         return 'Est', '以斯帖记'
     
     elif sn in ['约伯记', '伯', '', '', '', 'JOB', 'Job', 'job'] :
@@ -105,7 +105,7 @@ def getBook(sn):
     elif sn in ['诗篇', '诗', '', '', '', 'PSM', 'Psm', 'psm'] :
         return 'Psm', '诗篇'
     
-    elif sn in ['箴言', '箴', '', '', '', 'PRO', 'Pro', 'pro'] :
+    elif sn in ['箴言', '箴', '', '', '', 'PRO', 'Pro', 'pro','箴言书'] :
         return 'Pro', '箴言'
     
     elif sn in ['传道书', '传', '', '', '', 'ECC', 'Ecc', 'ecc'] :
