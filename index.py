@@ -6,6 +6,7 @@ Created on Sep 21, 2012
 @author: xen
 '''
 import sys
+import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -15,8 +16,8 @@ import pymongo
 
 web.config.debug = False
 #web.config.session_parameters.timeout = 6000 #100 Minutes
-web.config.mongo = pymongo.Connection('127.4.24.129', 27017)
-web.config.mongo.admin.authenticate('admin', 'ukCMnbuzFBq8')
+web.config.mongo = pymongo.Connection(os.environ.get('OPENSHIFT_MONGODB_DB_HOST'), os.environ.get('OPENSHIFT_MONGODB_DB_PORT'))
+web.config.mongo.admin.authenticate('admin', 'cUJX91cjn1dz')
 web.config.db = web.config.mongo['hbible']
 
 app = web.application(urls.urls, globals())
@@ -25,8 +26,8 @@ web.config._session = web.session.Session(app, web.session.DiskStore('sessions')
 
 import appinit
 app.add_processor(appinit.my_processor)
-app.internalerror = appinit.internalerror
-app.notfound = appinit.notfound
+#app.internalerror = appinit.internalerror
+#app.notfound = appinit.notfound
 
 application = app.wsgifunc()
 
