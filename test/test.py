@@ -5,6 +5,7 @@ Created on Dec 13, 2012
 @author: xen
 '''
 import os
+import urllib
 
 '''
 经文正则校验
@@ -25,4 +26,6 @@ def ret():
 
 e= ret()
 
-print os.sys.path
+ss='你好'
+
+print urllib.quote(ss)
