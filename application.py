@@ -26,8 +26,8 @@ web.config._session = web.session.Session(app, web.session.DiskStore('sessions')
 
 import appinit
 app.add_processor(appinit.my_processor)
-app.internalerror = appinit.internalerror
-app.notfound = appinit.notfound
+#app.internalerror = appinit.internalerror
+#app.notfound = appinit.notfound
 
 application = app.wsgifunc()
 
