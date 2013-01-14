@@ -24,9 +24,10 @@ import chardet
 def ret():
     return 'a', 'b'
 
-e= ret()
+e = ret()
 
-ss='你好'
-print chardet.detect(ss)
+ss = '你好'
+print len(unicode(ss, 'utf8'))
+# print chardet.detect(ss)
 
-print urllib.quote(ss)
+# print urllib.quote(ss)

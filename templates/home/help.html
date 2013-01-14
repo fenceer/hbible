@@ -1,0 +1,31 @@
+{% extends "layout/interior.html" %}
+{% import "macro/common.html" as common %}
+{% block content %}
+<div class="content-primary">
+	<h2>使用帮助</h2>
+	<p>
+		微圣经查询语法：
+		<br />
+		章和小节用任意标点隔开
+		<br />
+		例如：
+		“约翰福音3:16”&nbsp;&nbsp;&nbsp;“约翰福音3/16”
+		<br />
+		<br />
+		小节之间用"-"连接
+		<br />
+		例如：
+		“马太福音6:9-13”&nbsp;&nbsp;&nbsp;“加5:22-23”
+		<br />
+		<br />
+		温馨提示：
+		<br />
+		书卷名可以用简写哦
+		<br />
+		例如：“约3/16”&nbsp;&nbsp;&nbsp;“太6/9-13”
+		<br />
+	</p>
+</div><!--/content-primary -->
+
+{{common.menu()}}
+{% endblock %}

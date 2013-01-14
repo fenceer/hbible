@@ -12,6 +12,9 @@ local_interceptor = []
 urls = [
         ''                      , pre + 'home.Index',
         '/'                     , pre + 'home.Index',
+        '/home'                 , pre + 'home.Home',
+        '/help'                 , pre + 'home.Help',
+        '/contact'              , pre + 'home.Contact',
         '/tmp'                  , pre + 'test.Temp',
         '/test'                 , pre + 'test.Test',
         '/init'                 , pre + 'test.Init',

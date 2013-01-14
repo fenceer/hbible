@@ -12,7 +12,6 @@ import time
 import model
 import config
 from modules import common
-import urllib
 
 render = common.render('wechat')
 db = web.config.db
@@ -45,14 +44,25 @@ class Query():
         if content == 'test':
             return render.test(wmsg=wmsg)
         
-        text = model.wechat.quick(wmsg)
-        if not text: 
-            chapter = model.word.checkChapter(content)
-            '''如果查不到经文就搜索数据库和wiki'''
-            text = chapter if chapter else model.wechat.search(content)
-            if not text:
-                text = msgDict[10003] + msgDict[10008] + urllib.quote(content.encode('utf-8')) + msgDict[10009] + msgDict[10001]
-                db.doubt.insert(wmsg)
+        if content.startswith('#') or content.startswith('﹟'):
+            '''建议'''
+            db.proposal.insert(wmsg)
+            text = msgDict[10006]
+        elif content in ['n', '下一页']:
+            '''翻页'''
+            cache = db.cache.find_one({'_id':wmsg['FromUserName']})
+            if cache:
+                text = cache.get('text')
+                if len(text) <= 700:db.cache.remove({'_id':wmsg['FromUserName']})
+            else:
+                text = '没有下一页了~/微笑'
+        else:
+            text = model.wechat.quick(content)
+        
+        text = text if text else model.wechat.search(content)
+        if not text:
+            text = msgDict[10011] + msgDict[10003] + msgDict[10001] + msgDict[10002]
+            db.doubt.insert(wmsg)
         
         '''如果太长则要分割'''
         if len(text) > 700:

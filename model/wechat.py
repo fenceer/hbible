@@ -9,6 +9,8 @@ import hashlib
 from xml.dom import minidom
 import config
 import urllib2
+import urllib
+import model
 
 msgDict = config.msgDict
 db = web.config.db
@@ -34,37 +36,37 @@ def checkSignature(data):
     ss = hashlib.sha1(''.join(ll)).hexdigest()
     return True if ss == data.signature else False
 
-def quick(wmsg):
-    content = wmsg['Content']
+def quick(content):
     if content == 'Hello2BizUser':
         text = msgDict[10004] + msgDict[10002] + msgDict[10001] 
     elif content in ['H', 'h']:
         text = msgDict[10005] + msgDict[10002] + msgDict[10001]
-    elif content.startswith('#') or content.startswith('﹟'):
-        db.proposal.insert(wmsg)
-        text = msgDict[10006]
+    elif content.startswith('?') or content.startswith('？'):
+        content = content[1:]
+        text = search(content)
+        if not text:
+            text = msgDict[10003] + msgDict[10008] + urllib.quote(content.encode('utf-8')) + msgDict[10009] + msgDict[10001]
     elif content == '第三画':
         text = '耶稣爱你，我也爱你~/调皮'
-    elif content in ['n', '下一页']:
-        cache = db.cache.find_one({'_id':wmsg['FromUserName']})
-        if cache:
-            text = cache.get('text')
-            if len(text) <= 700:db.cache.remove({'_id':wmsg['FromUserName']})
-        else:
-            text = '没有下一页了~/微笑'
     else:
         text = None
     return text
 
 def search(content):
-    source = db.source.find_one({'key':content})
-    if source:
-        text = source['text']
+    chapter = model.word.checkChapter(content)
+    '''如果查不到经文就搜索数据库和wiki'''
+    if chapter:
+        text = chapter 
     else:
-        req = urllib2.Request(config.WIKI_URL + content)
-        resp = urllib2.urlopen(req)
-        body = resp.read()
-        xwiki = minidom.parseString(body)
-        rev = xwiki.getElementsByTagName('rev')
-        text = rev[0].firstChild.data.strip()  if rev else None
+        subject = db.subject.find_one({'title':content})
+        if subject:
+            text = subject['desc']['text']
+        else:
+#            req = urllib2.Request(config.WIKI_URL + content)
+#            resp = urllib2.urlopen(req)
+#            body = resp.read()
+#            xwiki = minidom.parseString(body)
+#            rev = xwiki.getElementsByTagName('rev')
+#            text = rev[0].firstChild.data.strip()  if rev else None
+            text = None
     return text

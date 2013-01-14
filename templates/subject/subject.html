@@ -1,0 +1,22 @@
+{% extends "layout/interior.html" %}
+{% import "macro/common.html" as common %}
+{% block content %}
+<div class="content-primary">
+	{%if subject.desc%}
+	<h2>{{subject.title}}</h2>
+	<p>
+		{{subject.desc.text}}
+	</p>
+	<p>
+		<a href="/s/edit?sbjId={{subject	._id}}"  data-role="button" data-inline="true"  data-theme="b" style="float: right;">编辑</a>
+	</p>
+	<div style="clear: both;"></div>
+	{%else%}
+	<p>
+		{{subject}}
+	</p>
+	{%endif%}
+</div><!--/content-primary -->
+
+{{common.menu()}}
+{% endblock %}

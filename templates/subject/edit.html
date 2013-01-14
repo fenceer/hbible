@@ -1,0 +1,42 @@
+{% extends "layout/interior.html" %}
+{% import "macro/common.html" as common %}
+{% block content %}
+<div class="content-primary">
+	<form action="/s/edit" method="post">
+		<p>
+			感谢您帮助微圣经创建词条
+		</p>
+		<div data-role="fieldcontain">
+			<label for="name">主题:</label>
+			<input type="text" name="title" id="name" value="{{subject.title}}"  />
+		</div>
+
+		<div data-role="fieldcontain">
+			<label for="textarea">内容:</label>
+			{% if subject.desc%}
+			<textarea cols="40" rows="8" name="text" id="textarea" style="height: 200px;">{{subject.desc.text}}</textarea>																					
+			{%else%}
+ 			<textarea cols="40" rows="8" name="text" id="textarea" style="height: 200px;"></textarea>
+			{%endif%}
+		</div>
+		
+		<div class="ui-body ui-body-b">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-a">
+					<button type="reset" data-theme="d">
+						取消
+					</button>
+				</div>
+				<div class="ui-block-b">
+					<button type="submit" data-theme="a">
+						保存
+					</button>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+
+</div><!--/content-primary -->
+
+{{common.menu()}}
+{% endblock %}

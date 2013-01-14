@@ -81,57 +81,18 @@
 {%endmacro%}
 
 {% macro menu(option)%}
-<ul class="nav nav-list bs-docs-sidenav">
-	<li id="li-post">
-		<a href="/post/list"><i class="icon-chevron-right"></i> 分享管理</a>
-	</li>
-
-	<li id="li-topic">
-		<a href="/topic/list"><i class="icon-chevron-right"></i> 话题管理</a>
-	</li>
-	<li id="li-mdd">
-		<a href="/mdd/list"><i class="icon-chevron-right"></i> 目的地</a>
-	</li>
-	<li id="li-style">
-		<a href="/style/list"><i class="icon-chevron-right"></i> 旅游风格</a>
-	</li>
-	<li id="li-group">
-		<a href="/group/list"><i class="icon-chevron-right"></i> 小组管理</a>
-	</li>
-	<li>
-		<a href="#layouts"><i class="icon-chevron-right"></i> 便签管理</a>
-	</li>
-
-	<li>
-		<a href="#responsive"><i class="icon-chevron-right"></i> 用户管理</a>
-	</li>
-	<li class="dropdown-submenu">
-		<a href="#"> 图片管理</a>
-		<ul class="dropdown-menu">
-			<li>
-				<a href="#"><i class="icon-plus"></i> 添加团</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-question-sign"></i> 未排团</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-plus-sign"></i> 新排团</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-circle-arrow-right"></i> 在外团</a>
-			</li>
-			<li>
-				<a href="#"><i class="icon-ok-sign"></i> 所有团</a>
-			</li>
-			<li style="display: none;">
-				<a href="#"><i class="icon-remove-sign"></i> 过期团</a>
-			</li>
+<div class="content-secondary">
+	<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+		<h3>更多选项</h3>
+		<ul data-role="listview" data-theme="c" data-dividertheme="d">
+			<!-- <li><a href="/home">&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li> -->
+			<li><a href="/search">圣经查询</a></li>
+			<li><a href="/s/edit">创建词条</a></li>
+			<li><a href="/contact">联系我们</a></li>
+			<li><a href="/help">使用帮助</a></li>
 		</ul>
-	</li>
-	<li>
-		<a href="/logout"><i class="icon-chevron-right"></i> 安全退出</a>
-	</li>
-</ul>
+	</div>
+</div>		
 
-<script>$('#li-{{option}}').addClass('active')</script>
+<!-- <script>$('#li-{{option}}').addClass('active')</script> -->
 {% endmacro %}

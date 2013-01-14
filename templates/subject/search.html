@@ -1,0 +1,19 @@
+{% extends "layout/interior.html" %}
+{% import "macro/common.html" as common %}
+{% block content %}
+<div class="content-primary">
+	<form action="/search" method="get">
+		<p>
+			请输入您要查询的章节或者词条
+		</p>
+		<div data-role="fieldcontain">
+			<input type="search" name="ss" id="search" value=""  />
+		</div>
+		<button type="submit" data-theme="b">
+			查&nbsp;&nbsp;&nbsp;询
+		</button>
+	</form>
+</div><!--/content-primary -->
+
+{{common.menu()}}
+{% endblock %}

@@ -10,8 +10,23 @@ from modules import common
 render = common.render('home')
 
 
+class Home:
+    def GET(self):
+        pass 
+        return render.home()
+        
+
 class Index:
     def GET(self):
         pass 
         return render.index()
-        
+    
+class Help:
+    def GET(self):
+        pass
+        return render.help()
+
+class Contact:
+    def GET(self):
+        pass
+        return render.contact()
