@@ -1,0 +1,6 @@
+bottle
+web.py
+jinja2
+pymongo
+redis
+PIL

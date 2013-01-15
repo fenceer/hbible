@@ -23,7 +23,7 @@ class Temp:
     GET()
     '''
     def GET(self):
-        return os.sys.path
+        return os.sys.path+'\n'+os.environ.get('VCAP_SERVICES')
 
 class Test:
     '''
