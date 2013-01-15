@@ -8,7 +8,6 @@ import web
 import hashlib
 from xml.dom import minidom
 import config
-import urllib2
 import urllib
 import model
 

@@ -12,6 +12,7 @@ import time
 import model
 import config
 from modules import common
+import urllib
 
 render = common.render('wechat')
 db = web.config.db
@@ -61,7 +62,10 @@ class Query():
         
         text = text if text else model.wechat.search(content)
         if not text:
-            text = msgDict[10011] + msgDict[10003] + msgDict[10001] + msgDict[10002]
+            if len(unicode(content)) <= 7:
+                text = msgDict[10003] + msgDict[10008] + urllib.quote(content.encode('utf-8')) + msgDict[10009] + msgDict[10001]
+            else:
+                text = msgDict[10011] + msgDict[10003] + msgDict[10001] + msgDict[10002]
             db.doubt.insert(wmsg)
         
         '''如果太长则要分割'''

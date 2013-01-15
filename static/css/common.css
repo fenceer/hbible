@@ -1,49 +1,20 @@
-.content {
-	padding: 10px;
-}
-
-#left, #mid, #right {
+.wx, .wb {
 	float: left;
-	margin-left: 1%;
 }
 
-#left {
-	width: 19%;
-	height: 600px;
+.wx {
+	margin: 0 60px;
 }
 
-#left .nav {
-	position: fixed;
+.wb {
+	margin-left: 10px;
 }
-#mid {
-	width: 39%;
-}
-#right {
-	width: 38%;
-	margin-right: 1%;
+h4 {
+	font-size: 16px;
+	color: #777;
+	margin-bottom: 10px;
 }
 
-/*话题／分享添加>目的地／风格关联*/
-.relation {
+.clearfix {
+	clear: both;
 }
-.relation .btn {
-	margin-right: 5px;
-	margin-bottom: 5px;
-}
-.relation .btn a {
-	color: #FFFFFF;
-	margin-left: 5px;
-}
-.relation .btn a:hover {
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.collapse-btn, .save-btn {
-}
-
-/*bootstrarp fix*/
-.modal-header {
-	padding: 0px 15px;
-}
-/*END bootstrarp fix*/
