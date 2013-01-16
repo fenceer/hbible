@@ -11,7 +11,7 @@ mddType = ['古镇', '温泉', '滑雪', '都市', '名胜', '其他']
 data['img_domain'] = 'http://kapian.b0.upaiyun.com'
 data['domain'] = 'http://back.zobei.com:8080'
 data['mddType'] = mddType
-WIKI_URL = 'http://wx.weibible.org/s/edit?ss='
+WIKI_URL = 'http://www.weibible.org/s/edit?ss='
 
 pp = os.environ.get('OPENSHIFT_REPO_DIR')
 pp = pp + 'diy/' if pp else ''
