@@ -17,7 +17,7 @@ import pymongo
 web.config.debug = False
 #web.config.session_parameters.timeout = 6000 #100 Minutes
 web.config.mongo = pymongo.Connection(os.environ.get('OPENSHIFT_MONGODB_DB_HOST'), 27017)
-web.config.mongo.admin.authenticate('admin', 'cUJX91cjn1dz')
+web.config.mongo.admin.authenticate('admin', 'ukYcU1x3-Kbx')
 web.config.db = web.config.mongo['hbible']
 
 app = web.application(urls.urls, globals())
