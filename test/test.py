@@ -4,8 +4,6 @@ Created on Dec 13, 2012
 
 @author: xen
 '''
-import urllib
-import chardet
 
 '''
 经文正则校验

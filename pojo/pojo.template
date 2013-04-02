@@ -1,0 +1,2 @@
+{%for f in fields%}private {{f.type}} {{f.name}};
+{%endfor%}

@@ -1,0 +1,5 @@
+{%for f in fields%}
+<property name="{{f.name}}" column="{{f.colname}}" type="{{f.type2}}" {%if f.length%}length="{{f.length}}"{%endif%} not-null="{{f.notnull}}">
+</property>
+{%endfor%}
+
