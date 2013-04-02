@@ -1,4 +1,4 @@
-bottle
+uwsgi
 web.py
 jinja2
 pymongo
