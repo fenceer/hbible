@@ -13,6 +13,7 @@ from modules import common
 
 # define hooks
 def my_processor(handler): 
+    web.header("Content-Type",'')
     path = web.ctx.path
     interceptors = urls.interceptors.get(path)
     if interceptors is None:

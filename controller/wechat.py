@@ -38,7 +38,7 @@ class Query():
         wmsg = model.wechat.getMsgObj(web.ctx.data)
         db.wmsg.insert(wmsg)
         
-        content = wmsg['Content']
+        content = wmsg['Content'] if wmsg.get('Content', '') else wmsg.get('Event')
         if content == 'news':
             wmsg['Articles'] = ['a', 'b', '1', '2', '3']
             return render.news(wmsg=wmsg)

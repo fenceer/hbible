@@ -24,7 +24,8 @@ def getMsgObj(xdata):
     return xobj
 
 def getValue(dom, key):
-    return dom.getElementsByTagName(key)[0].firstChild.data.strip()
+    child = dom.getElementsByTagName(key)[0].firstChild
+    return child.data.strip() if child else ''
 
 def checkSignature(data):
     ll = []
@@ -36,7 +37,9 @@ def checkSignature(data):
     return True if ss == data.signature else False
 
 def quick(content):
-    if content == 'Hello2BizUser':
+    if content == 'subscribe':
+        text = msgDict[10004] + msgDict[10002] + msgDict[10001]
+    elif content == 'unsubscribe':
         text = msgDict[10004] + msgDict[10002] + msgDict[10001] 
     elif content in ['H', 'h']:
         text = msgDict[10005] + msgDict[10002] + msgDict[10001]

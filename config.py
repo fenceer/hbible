@@ -14,7 +14,7 @@ data['mddType'] = mddType
 WIKI_URL = 'http://www.weibible.org/s/edit?ss='
 
 pp = os.environ.get('OPENSHIFT_REPO_DIR')
-pp = pp  if pp else ''
+pp = pp + 'diy/' if pp else ''
 
 msgDict = {
          10001:'回复h查看使用帮助\n',
