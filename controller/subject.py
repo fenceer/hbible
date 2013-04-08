@@ -23,10 +23,7 @@ class Edit:
     def GET(self):
         data = web.input()
         sbjId = data.get('sbjId', 0)
-        subject = db.subject.find_one({'_id':int(sbjId)})
-        if subject is None:
-            subject = {}
-            subject['title'] = data.get('ss', '')
+        subject = db.subject.find_one({'_id':int(sbjId)}) if sbjId else {'title':data.get('ss', '')}
         
         return render.edit(subject=subject)
         
